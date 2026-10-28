@@ -242,6 +242,10 @@
 .app-logo-frame img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .work-card:nth-child(2) .app-logo-frame { background: #171626; transform: rotate(7deg) rotateX(13deg); }
 .work-card:nth-child(3) .app-logo-frame { transform: rotate(-4deg) rotateX(13deg); }
+.work-card-tnc-courses .app-logo-frame,
+.work-card-nprep .app-logo-frame {
+  width: 182px; height: 110px; border-radius: 22px; background: #241f37;
+}
 .work-card:hover .app-logo-frame { transform: translateY(-6px) rotate(-3deg) rotateX(8deg); box-shadow: 13px 19px 0 rgba(36,26,117,.22), inset 5px 6px 16px rgba(255,255,255,.65); }
 .art-stamp { position: absolute; top: 20px; left: 20px; padding: 8px 10px; border: 1px solid rgba(40,33,74,.22); border-radius: 99px; background: rgba(255,249,233,.66); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 .work-meta { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 20px 2px 0; }
@@ -267,8 +271,11 @@
 .next-copy .section-heading { margin-bottom: 24px; }
 .next-copy p { color: #605b74; font-size: 16px; line-height: 1.65; max-width: 485px; }
 .upcoming-apps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; margin: 24px 0 0; list-style: none; }
-.upcoming-app { min-width: 0; min-height: 62px; display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid rgba(40,33,74,.16); border-radius: 12px; background: rgba(255,249,233,.56); }
+.upcoming-app { min-width: 0; min-height: 70px; display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid rgba(40,33,74,.16); border-radius: 12px; background: rgba(255,249,233,.56); }
 .upcoming-index { color: #766f86; font-size: 10px; }
+.upcoming-logo-frame { flex: 0 0 40px; width: 40px; height: 40px; display: grid; place-items: center; padding: 4px; border: 1px solid rgba(40,33,74,.14); border-radius: 9px; background: #fff9e9; }
+.upcoming-logo-frame-dark { border-color: rgba(255,255,255,.2); background: #241f37; }
+.upcoming-logo { display: block; width: 100%; height: 100%; object-fit: contain; }
 .upcoming-name { flex: 1; color: #302853; font-size: 14px; font-weight: 600; line-height: 1.25; }
 .upcoming-short { flex: 0 0 auto; padding: 4px 6px; border: 1px solid rgba(52,40,205,.25); border-radius: 99px; color: #3428cd; font-size: 9px; }
 .editable-flag { display: inline-flex; align-items: center; gap: 8px; padding: 9px 12px; border: 1px dashed rgba(52,40,205,.48); border-radius: 6px; font-family: var(--app-font-mono); font-size: 10px; letter-spacing: .06em; color: #3428cd; text-transform: uppercase; }
@@ -341,6 +348,13 @@
   .work-grid { grid-template-columns: 1fr; gap: 30px; }
   .work-card:last-child { grid-column: auto; max-width: none; }
   .work-art { height: 270px; }
+  .work-card-tnc-courses .app-logo-frame,
+  .work-card-nprep .app-logo-frame { width: 166px; height: 100px; }
+  .upcoming-app { gap: 8px; padding: 9px; }
+  .upcoming-index { display: none; }
+  .upcoming-logo-frame { flex-basis: 32px; width: 32px; height: 32px; padding: 3px; }
+  .upcoming-name { font-size: 12px; }
+  .upcoming-short { padding: 3px 4px; font-size: 8px; }
   .work-note { font-size: 12px; }
   .up-next-inner { grid-template-columns: 1fr; padding: 75px 0 84px; gap: 56px; }
   .next-ticket { min-height: 265px; margin: 0 10px; }

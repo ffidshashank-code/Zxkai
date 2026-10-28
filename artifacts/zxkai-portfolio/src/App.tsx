@@ -17,8 +17,8 @@ const portfolioSlots = [
     name: 'TNC Nursing Courses',
     description: 'Courses for NORCET, AIIMS, CHO, and nursing exams.',
     href: 'https://courses.tncnursing.site',
-    logo: '/logos/tnc-courses.svg',
-    logoAlt: 'TNC Nursing emblem',
+    logo: '/logos/tnc-nursing.png',
+    logoAlt: 'TNC Nursing Classes Patna logo',
   },
   {
     id: 'tnc-test-series',
@@ -37,18 +37,20 @@ const portfolioSlots = [
     name: 'NPrep',
     description: 'Lectures, notes, PYQs, and test series in one place.',
     href: 'https://nprep.site/',
-    logo: '/logos/nprep-logo.png',
+    logo: '/logos/nprep-wordmark.png',
     logoAlt: 'NPrep logo',
   },
 ];
 
 const upcomingApps = [
-  { name: 'Nursing Next Live', shortName: 'NNL' },
-  { name: 'Nursing Cortex' },
-  { name: 'Testbook' },
-  { name: 'JINC Nursing' },
-  { name: 'Vidyagram' },
-  { name: 'Utkarsh' },
+  { name: 'Nursing Next Live', shortName: 'NNL', logo: '/logos/nnl-one.png', logoBackdrop: 'dark' },
+  { name: 'Nursing Cortex', logo: '/logos/nursing-cortex.webp' },
+  { name: 'Testbook', logo: '/logos/testbook.png' },
+  { name: 'JINC Nursing', logo: '/logos/jinc-edutech.png' },
+  { name: 'Vidyagram', logo: '/logos/vidyagram.webp' },
+  { name: 'Utkarsh', logo: '/logos/utkarsh.jpg' },
+  { name: 'NPrep', logo: '/logos/nprep-wordmark.png', logoBackdrop: 'dark' },
+  { name: 'Physics Wallah', logo: '/logos/physics-wallah.webp' },
 ];
 
 function Home() {
@@ -121,7 +123,7 @@ function Home() {
 
         <div className="work-grid">
           {portfolioSlots.map((slot) => (
-            <article className="work-card" key={slot.id} data-testid={`card-app-${slot.id}`}>
+            <article className={`work-card work-card-${slot.id}`} key={slot.id} data-testid={`card-app-${slot.id}`}>
               <div className="work-art">
                 <span className="art-stamp mono">{slot.label}</span>
                 <div className="app-logo-frame">
@@ -152,19 +154,22 @@ function Home() {
 
       <section className="up-next" id="next" aria-labelledby="next-title">
         <div className="up-next-inner">
-          <div className="next-ticket" aria-label="Six upcoming nursing apps">
+          <div className="next-ticket" aria-label="Eight upcoming learning apps">
             <span className="ticket-label">ON THE HORIZON / COMING UP</span>
             <span className="ticket-big">NEXT<br />WAVE</span>
-            <span className="ticket-foot mono">6 NURSING PROJECTS</span>
+            <span className="ticket-foot mono">8 LEARNING PROJECTS</span>
           </div>
           <div className="next-copy">
             <p className="section-kicker eyebrow mono">More is on the way</p>
             <h2 className="section-heading" id="next-title">The next wave<br />is taking shape.</h2>
-            <p>Upcoming nursing learning projects from ZXKAI I.</p>
+            <p>Upcoming learning apps from ZXKAI I.</p>
             <ul className="upcoming-apps" data-testid="list-upcoming-apps">
               {upcomingApps.map((app, index) => (
                 <li className="upcoming-app" key={app.name} data-testid={`upcoming-app-${index + 1}`}>
                   <span className="upcoming-index mono">{String(index + 1).padStart(2, '0')}</span>
+                  <span className={`upcoming-logo-frame${app.logoBackdrop === 'dark' ? ' upcoming-logo-frame-dark' : ''}`}>
+                    <img className="upcoming-logo" src={app.logo} alt="" aria-hidden="true" />
+                  </span>
                   <span className="upcoming-name">{app.name}</span>
                   {app.shortName && <span className="upcoming-short mono">{app.shortName}</span>}
                 </li>
