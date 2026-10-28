@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDownRight, ArrowUpRight, ArrowUp, Radio, Send } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, ArrowUp, MessageCircle, Send } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -9,12 +9,46 @@ import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 
 const queryClient = new QueryClient();
 
-// Replace these editable content slots once the real app names, logo files,
-// descriptions, and destination URLs have been supplied.
 const portfolioSlots = [
-  { id: 'app-one', index: '01', glyph: 'A', colorLabel: 'mint studio' },
-  { id: 'app-two', index: '02', glyph: 'B', colorLabel: 'coral studio' },
-  { id: 'app-three', index: '03', glyph: 'C', colorLabel: 'lilac studio' },
+  {
+    id: 'tnc-courses',
+    index: '01',
+    label: 'Nursing courses',
+    name: 'TNC Nursing Courses',
+    description: 'Courses for NORCET, AIIMS, CHO, and nursing exams.',
+    href: 'https://courses.tncnursing.site',
+    logo: '/logos/tnc-courses.svg',
+    logoAlt: 'TNC Nursing emblem',
+  },
+  {
+    id: 'tnc-test-series',
+    index: '02',
+    label: 'Test series',
+    name: 'TNC Nursing Test Series',
+    description: 'Full-length nursing mock tests with solutions and results.',
+    href: 'https://test.tncnursing.site/',
+    logo: '/logos/tnc-test-series.png',
+    logoAlt: 'Test Sagar logo',
+  },
+  {
+    id: 'nprep',
+    index: '03',
+    label: 'Study platform',
+    name: 'NPrep',
+    description: 'Lectures, notes, PYQs, and test series in one place.',
+    href: 'https://nprep.site/',
+    logo: '/logos/nprep-logo.png',
+    logoAlt: 'NPrep logo',
+  },
+];
+
+const upcomingApps = [
+  { name: 'Nursing Next Live', shortName: 'NNL' },
+  { name: 'Nursing Cortex' },
+  { name: 'Testbook' },
+  { name: 'JINC Nursing' },
+  { name: 'Vidyagram' },
+  { name: 'Utkarsh' },
 ];
 
 function Home() {
@@ -79,47 +113,63 @@ function Home() {
       <section className="section" id="work" aria-labelledby="work-title">
         <div className="work-head">
           <div className="work-head-copy">
-            <p className="section-kicker eyebrow mono">A little collection / 001—003</p>
-            <h2 id="work-title" className="section-heading">Things I’ve<br />put into the world.</h2>
+            <p className="section-kicker eyebrow mono">Nursing tools / 001—003</p>
+            <h2 id="work-title" className="section-heading">Made for the<br />next exam.</h2>
           </div>
-          <p className="section-intro">A home for my apps, experiments, and useful oddities. The shelves are ready; the app details are waiting for their final labels.</p>
+          <p className="section-intro">Three places to learn, practise, and prepare for nursing exams.</p>
         </div>
 
         <div className="work-grid">
           {portfolioSlots.map((slot) => (
             <article className="work-card" key={slot.id} data-testid={`card-app-${slot.id}`}>
-              <div className="work-art" role="img" aria-label={`Decorative ${slot.colorLabel} placeholder app mark`}>
-                <span className="art-stamp mono">APP MARK / TO REPLACE</span>
-                <div className="app-glyph" aria-hidden="true">{slot.glyph}</div>
+              <div className="work-art">
+                <span className="art-stamp mono">{slot.label}</span>
+                <div className="app-logo-frame">
+                  <img src={slot.logo} alt={slot.logoAlt} />
+                </div>
                 <div className="art-floor" />
               </div>
               <div className="work-meta">
                 <div>
-                  <h3 className="work-title">[App name goes here]</h3>
-                  <p className="work-placeholder"><i aria-hidden="true" />Add the app name, short description, logo file, and live destination here.</p>
+                  <h3 className="work-title">{slot.name}</h3>
+                  <p className="app-description">{slot.description}</p>
+                  <a
+                    className="app-open"
+                    href={slot.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-testid={`link-app-${slot.id}`}
+                  >
+                    Open app <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
                 </div>
                 <span className="card-index">{slot.index}</span>
               </div>
             </article>
           ))}
         </div>
-        <p className="work-note">
-          <strong>Content note:</strong> These are editable portfolio slots, not live app listings. Replace each title, description, and generated letter-mark with the supplied details; add an outbound link only when its real URL is known.
-        </p>
       </section>
 
       <section className="up-next" id="next" aria-labelledby="next-title">
         <div className="up-next-inner">
-          <div className="next-ticket" aria-label="Upcoming app placeholder artwork" role="img">
-            <span className="ticket-label">IN THE WORKSHOP / COMING UP</span>
-            <span className="ticket-big">NEXT<br />THING</span>
-            <span className="ticket-foot mono">NAME + DETAILS TO COME</span>
+          <div className="next-ticket" aria-label="Six upcoming nursing apps">
+            <span className="ticket-label">ON THE HORIZON / COMING UP</span>
+            <span className="ticket-big">NEXT<br />WAVE</span>
+            <span className="ticket-foot mono">6 NURSING PROJECTS</span>
           </div>
           <div className="next-copy">
-            <p className="section-kicker eyebrow mono">A new idea is taking shape</p>
-            <h2 className="section-heading" id="next-title">One more<br />thing is brewing.</h2>
-            <p>The next app is still under wraps. Its name, what it does, and when it lands will go here as soon as those details are ready to share.</p>
-            <span className="editable-flag"><span className="status-dot" />Upcoming app details pending</span>
+            <p className="section-kicker eyebrow mono">More is on the way</p>
+            <h2 className="section-heading" id="next-title">The next wave<br />is taking shape.</h2>
+            <p>Upcoming nursing learning projects from ZXKAI I.</p>
+            <ul className="upcoming-apps" data-testid="list-upcoming-apps">
+              {upcomingApps.map((app, index) => (
+                <li className="upcoming-app" key={app.name} data-testid={`upcoming-app-${index + 1}`}>
+                  <span className="upcoming-index mono">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="upcoming-name">{app.name}</span>
+                  {app.shortName && <span className="upcoming-short mono">{app.shortName}</span>}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -138,22 +188,34 @@ function Home() {
             <div>
               <h3 className="community-title">Telegram</h3>
               <div className="community-bottom">
-                <p>Community invite link will be added here.</p>
-                <button className="button-disabled" type="button" disabled aria-label="Telegram invite link not provided yet" data-testid="button-telegram-pending">
-                  LINK TO BE ADDED
-                </button>
+                <p>Join the free nursing test series channel.</p>
+                <a
+                  className="button-join"
+                  href="https://t.me/tnc_test_series_free"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="link-telegram"
+                >
+                  Join Telegram <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </article>
           <article className="community-card whatsapp">
-            <div className="community-icon" aria-hidden="true"><Radio size={21} /></div>
+            <div className="community-icon" aria-hidden="true"><MessageCircle size={21} /></div>
             <div>
               <h3 className="community-title">WhatsApp</h3>
               <div className="community-bottom">
-                <p>Community invite link will be added here.</p>
-                <button className="button-disabled" type="button" disabled aria-label="WhatsApp invite link not provided yet" data-testid="button-whatsapp-pending">
-                  LINK TO BE ADDED
-                </button>
+                <p>Follow the Zxkai channel on WhatsApp.</p>
+                <a
+                  className="button-join"
+                  href="https://whatsapp.com/channel/0029Vb8nbcJA2pL6dbzeUs3Y"
+                  target="_blank"
+                  rel="noreferrer"
+                  data-testid="link-whatsapp"
+                >
+                  Follow channel <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
               </div>
             </div>
           </article>
